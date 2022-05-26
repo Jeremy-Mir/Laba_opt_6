@@ -26,11 +26,9 @@ namespace Laba_opt_6
         public double Qi(int N)
         {
             double Q = 0;
-            double x = 1;
             for (int i = 0; i < N; i++)
             {
-               
-                Q = Q + Math.Pow(xi(N) - Ni(N), 2);
+                Q = Q + Math.Pow(xi(N) - Ni(200), 2);
             }
             return Q / N;
         }
@@ -47,14 +45,19 @@ namespace Laba_opt_6
         public double zi(int k)
         {
             double Z = 0;
-           
-            for (int i = k; i < k+10; i++)
-            {
-                Z = Z + (xi(i) * Math.Pow(2500.0 / (Qi(k) * 0.12), 1.0 / 2.0)*Math.Pow(Math.E,-0.12*(i-k))+ 200);
-                chart2.Series[0].Points.AddXY(i-k, Z);
 
+            for (int j = 0; j < k-10 ;j++)
+            {
+                Z = 0;
+                for (int i = j; i < j + 10; i++)
+                {
+                    Z = Z + (xi(i) * (Math.Pow(2500.0 / (Qi(k) * 0.12), 0.5) * Math.Exp( -0.12 * (j - i))+200));
+                    
+                }
+                chart2.Series[0].Points.AddXY(j, (Z / 10));
             }
-            return Z / 10;
+            
+            return( Z / 10);
         }
         //Math.Log(k / (Qi(200)*(20 - s)))
         public double Ki(int s)
