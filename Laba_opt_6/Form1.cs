@@ -73,7 +73,7 @@ namespace Laba_opt_6
                 z = 0;
                 for (int i = j; i < j + 10; i++)
                 {
-                    z = z + (xi(i) * (Math.Sqrt(2500.0 / (Qi(k) * 0.12*19125)) * Math.Exp( -0.12 * 0.025 * (j - i))));
+                    z = z + (xi(i) * (Math.Sqrt(2500.0 / (Qi(k) * 0.12*0.6)) * Math.Exp( -0.12 * 0.1 * (j - i)))+200);
                     
                 }
                 Z.Add(z / 10);
@@ -81,15 +81,14 @@ namespace Laba_opt_6
             
             return( z / 10);
         }
-        //Math.Log(k / (Qi(200)*(20 - s)))
         public double Ki(int s)
         {
             double k = 0;
-            for (int i = 1; i < 190 - s; i++)
+            for (int i = 1; i < 200 - s; i++)
             {
                 k = k + ((X[i] - Ni(200)) * (X[ s+i ] - Ni(200)));
-                K.Add( k / (190 - s));
-                A.Add(Math.Abs(Math.Log(-K[i-1]/Qi(200))/s));
+                K.Add( k / (200 - s));
+                A.Add(Math.Log(-K[i-1]/Qi(200))/s);
 
             }
             return k / (190-s);
@@ -133,11 +132,11 @@ namespace Laba_opt_6
             Ki(20);
             foreach (double d in K)
             {
-                chart3.Series[0].Points.AddXY(n, K[n]);
-                chart4.Series[0].Points.AddXY(n, A[n]);
+                //chart3.Series[0].Points.AddXY(n, K[n]);
+              //  chart4.Series[0].Points.AddXY(n, A[n]);
                 n = n + 1;
             }
-            Console.WriteLine("a = " + A[n-1]);
+            Console.WriteLine("a = " +-1* A[n-1]);
 
 
 
