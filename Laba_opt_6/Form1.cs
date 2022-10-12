@@ -16,7 +16,7 @@ namespace Laba_opt_6
         {
             double M = 0;
             double x = 1;
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < N; i++)
             {
 
                 M = M + (X[i]);
@@ -73,7 +73,7 @@ namespace Laba_opt_6
                 z = 0;
                 for (int i = j; i < j + 10; i++)
                 {
-                    z = z + (xi(i) * (Math.Sqrt(2500.0 / (Qi(k) * 0.12*0.6)) * Math.Exp( -0.12 * 0.1 * (j - i)))+200);
+                    z = z + (xi(i) * (Math.Sqrt(25.0 / (Qi(k) * 0.05 * 0.6)) * Math.Exp( -0.05 * 0.1 * (j - i)))+285);
                     
                 }
                 Z.Add(z / 10);
@@ -86,9 +86,9 @@ namespace Laba_opt_6
             double k = 0;
             for (int i = 1; i < 200 - s; i++)
             {
-                k = k + ((X[i] - Ni(200)) * (X[ s+i ] - Ni(200)));
+                k = k + ((X[i] - Ni(285)) * (X[ s+i ] - Ni(285)));
                 K.Add( k / (200 - s));
-                A.Add(Math.Log(-K[i-1]/Qi(200))/s);
+                A.Add(Math.Log(-K[i-1]/Qi(285))/s);
 
             }
             return k / (190-s);
