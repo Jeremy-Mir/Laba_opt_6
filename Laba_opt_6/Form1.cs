@@ -64,6 +64,61 @@ namespace Laba_opt_6
             
            return (x / Math.Pow(2, 16)) - 0.5;
         }
+        double find_C(double f, int m)
+        {
+            double A1 = 40000;
+            double A2 = 35000;
+            double A3 = 16000;
+            double E1 = 67000;
+            double E2 = 68000;
+            double E3 = 70000;
+            double R = 8.31;
+            double C1 = 0.4;
+            double C2 = 0.3;
+            double T0 = 300;
+            double T = T0;
+            double Tt = 285;
+            double Kt = 5000;
+            double Q1 = 81000;
+            double Q2 = 48600;
+            double p = 810;
+            double Ct = 1200;
+            double K1;
+            double K2;
+            double K3;
+            double C3 = 0;
+            double C5 = 0;
+            double C10 = C1;
+            double C20 = C2;
+            double C30 = 0;
+            double C50 = 0;
+
+
+            for (int t = 0; t < 1800; t = t+2)
+            {
+                Tt = Z[t/2];
+                K1 = A1 * Math.Exp(-E1 / (R * T));
+                K2 = A2 * Math.Exp(-E2 / (R * T));
+                K3 = A3 * Math.Exp(-E3 / (R * T));
+                C1 = C10 + (-K2 * C10 * C30 - 3 * K1 * C10 * C20 - 2 * K3 * C10 * C20)*2;
+                C2 = C20 + (-K1 * C10 * C20 - 4 * K1 * C10 * C20) * 2;
+                C3 = C30 + (K1 * C10 * C20 - K2 * C10 * C30) * 2;
+                C5 = C50 + (K2 * C10 * C30) * 2;
+                T = T0 + ((-Kt * f * (T0 - Tt)) + K1 * 3 * C10 * C20 * Q1 * m / p + K2 * C10 * C30 * Q2 * m / p) / Ct / m * 2;
+
+
+                C10 = C1;
+                C20 = C2;
+                C30 = C3;
+                C50 = C5;
+                T0 = T;
+                chart2.Series[0].Points.AddXY(t/2, T);
+                Console.WriteLine(T);
+                //Console.WriteLine(Math.Abs(T));
+            }
+
+            return C5;
+        }
         public double zi(int k)
         {
             double z = 0;
@@ -111,32 +166,25 @@ namespace Laba_opt_6
             double z0 = 1;
             double k = 20;
             double x = 1;
-            xi(200);
-            for (int i = 0; i < 200; i++)
-            {
-                chart1.Series[0].Points.AddXY(i, X[i]);
-            }
-            Console.WriteLine("M(x) = " + Ni(200));
-            Console.WriteLine("Q(x) = " + Qi(200));
+            xi(910);
+            chart1.ChartAreas[0].AxisY.Maximum = 350;
+            chart2.ChartAreas[0].AxisY.Maximum = 350;
+            chart1.ChartAreas[0].AxisY.Minimum = 250;
+            chart2.ChartAreas[0].AxisY.Minimum = 250;
 
-            zi(200);
-            for (int i = 0; i < 190; i++)
-            {
-                chart2.Series[0].Points.AddXY(i, Z[i]);
-            }
-            Console.WriteLine("Mz(x) = " + Niz(190));
-            Console.WriteLine("Qz(x) = " + Qiz(190));
+            
 
-            int n = 0;
-
-            Ki(20);
-            foreach (double d in K)
+            zi(910);
+            for (int i = 0; i < 900; i++)
             {
-                //chart3.Series[0].Points.AddXY(n, K[n]);
-              //  chart4.Series[0].Points.AddXY(n, A[n]);
-                n = n + 1;
+                chart1.Series[0].Points.AddXY(i, Z[i]);
+
+                Console.WriteLine(Z[i]);
+                
+
+                
             }
-            Console.WriteLine("a = " +-1* A[n-1]);
+            Console.WriteLine(find_C(7, 3000));
 
 
 
