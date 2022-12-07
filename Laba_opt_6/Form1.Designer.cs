@@ -31,8 +31,12 @@ namespace Laba_opt_6
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -52,6 +56,14 @@ namespace Laba_opt_6
             this.chart1.Size = new System.Drawing.Size(347, 293);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            title1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title1.Name = "Title1";
+            title1.Text = "Tt";
+            title2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title2.Name = "Title2";
+            title2.Text = "t";
+            this.chart1.Titles.Add(title1);
+            this.chart1.Titles.Add(title2);
             // 
             // chart2
             // 
@@ -67,6 +79,14 @@ namespace Laba_opt_6
             this.chart2.Size = new System.Drawing.Size(347, 293);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
+            title3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title3.Name = "Title1";
+            title3.Text = "T";
+            title4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title4.Name = "Title2";
+            title4.Text = "t";
+            this.chart2.Titles.Add(title3);
+            this.chart2.Titles.Add(title4);
             // 
             // Form1
             // 
