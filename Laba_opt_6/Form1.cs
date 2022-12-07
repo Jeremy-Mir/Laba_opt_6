@@ -73,8 +73,8 @@ namespace Laba_opt_6
             double E2 = 68000;
             double E3 = 70000;
             double R = 8.31;
-            double C1 = 0.4;
-            double C2 = 0.3;
+            double C1 = 10800;
+            double C2 = 5522.7;
             double T0 = 300;
             double T = T0;
             double Tt = 285;
@@ -100,11 +100,11 @@ namespace Laba_opt_6
                 K1 = A1 * Math.Exp(-E1 / (R * T));
                 K2 = A2 * Math.Exp(-E2 / (R * T));
                 K3 = A3 * Math.Exp(-E3 / (R * T));
-                C1 = C10 + (-K2 * C10 * C30 - 3 * K1 * C10 * C20 - 2 * K3 * C10 * C20)*2;
-                C2 = C20 + (-K1 * C10 * C20 - 4 * K1 * C10 * C20) * 2;
-                C3 = C30 + (K1 * C10 * C20 - K2 * C10 * C30) * 2;
-                C5 = C50 + (K2 * C10 * C30) * 2;
-                T = T0 + ((-Kt * f * (T0 - Tt)) + K1 * 3 * C10 * C20 * Q1 * m / p + K2 * C10 * C30 * Q2 * m / p) / Ct / m * 2;
+                C1 = C10 + (-K2 * C10 * C30 - 3 * K1 * C10 * C20 - 2 * K3 * C10 * C20);
+                C2 = C20 + (-K1 * C10 * C20 - 4 * K3 * C10 * C20);
+                C3 = C30 + (K1 * C10 * C20 - K2 * C10 * C30);
+                C5 = C50 + (K2 * C10 * C30);
+                T = T0 + ((-Kt * f * (T0 - Tt)) + K1  * Q1 * m / p + K2  * Q2 * m / p) / Ct / m * 2;
 
 
                 C10 = C1;
